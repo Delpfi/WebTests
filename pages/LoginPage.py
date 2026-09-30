@@ -13,6 +13,9 @@ class LoginPageLocators():
     QR_BUTTON = (By.ID, 'tabQr')
     TAB_LOGIN = (By.ID, 'tabLogin')
     TEXT_LOGIN_ERROR = (By.ID, 'login-error')
+    RECOVER_LINK_BUTTON = (By.ID, 'lockout-recover-btn')
+    GO_BACK_BUTTON = (By.ID,'lockout-cancel-btn')
+    REGISTER_BUTTON = (By.ID, 'lockout-register-btn')
 
 
 
@@ -23,6 +26,8 @@ class LoginPageHelper(BasePage): #при создании объекта дан�
 
 
     def check_page(self):
+        with allure.step('Проверяем корректность загрузки страницы'):
+            self.attach_screenshot()
         self.find_element(LoginPageLocators.LOGIN_FIELD)
         self.find_element(LoginPageLocators.LOGIN_PASSWORD)
         self.find_element(LoginPageLocators.LOGIN_BUTTON)
@@ -40,7 +45,17 @@ class LoginPageHelper(BasePage): #при создании объекта дан�
         self.attach_screenshot()
         return self.find_element(LoginPageLocators.TEXT_LOGIN_ERROR).text
 
-    @allure.step('Ввести переданный текст в поле')
-    def send_keys_text(self,text_login):
+    @allure.step('Заполняем поле логин')
+    def type_login(self,text_login):
         self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(text_login)
+        self.attach_screenshot()
 
+    @allure.step('Заполняем поле пароль')
+    def type_password(self, text_password):
+        self.find_element(LoginPageLocators.LOGIN_PASSWORD).send_keys(text_password)
+        self.attach_screenshot()
+
+    @allure.step('Переходим к восстановлению')
+    def click_recovery(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.RECOVER_LINK_BUTTON).click()
