@@ -16,7 +16,7 @@ class LoginPageLocators():
     RECOVER_LINK_BUTTON = (By.ID, 'lockout-recover-btn')
     GO_BACK_BUTTON = (By.ID,'lockout-cancel-btn')
     REGISTER_BUTTON = (By.ID, 'lockout-register-btn')
-
+    REGISTRATION_BUTTON = (By.ID, 'hero-register-btn')
 
 
 class LoginPageHelper(BasePage): #при создании объекта данного класса проверка будет автоматически
@@ -59,3 +59,8 @@ class LoginPageHelper(BasePage): #при создании объекта дан�
     def click_recovery(self):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.RECOVER_LINK_BUTTON).click()
+
+    @allure.step('Переходим к регистрации')
+    def click_registration(self):
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON).click()
+        self.attach_screenshot()
