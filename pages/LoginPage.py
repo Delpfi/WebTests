@@ -1,6 +1,6 @@
 import allure
 
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from selenium.webdriver.common.by import By
 
 
@@ -19,10 +19,10 @@ class LoginPageLocators():
     REGISTRATION_BUTTON = (By.ID, 'hero-register-btn')
 
 
-class LoginPageHelper(BasePage): #при создании объекта данного класса проверка будет автоматически
+class LoginPageHelper(BasePageHelper): #при создании объекта данного класса проверка будет автоматически
     def __init__(self, driver):
         self.driver = driver
-        self.check_page()
+        #self.check_page() - не работает на ok.ru, нет таких элементов.
 
 
     def check_page(self):
