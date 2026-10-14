@@ -1,4 +1,4 @@
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from selenium.webdriver.common.by import By
 import allure
 import random
@@ -15,7 +15,7 @@ class RegistrationPageLocators():
     BUTTON_LOGIN = (By.ID, 'login-link-anchor')
 
 
-class RegistrationPageHelper(BasePage):
+class RegistrationPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.click_next_page_registration_phone()
